@@ -9,14 +9,14 @@ script:
   - docker run -e CI=true jordan/react-test npm test
    
 after_success:
-  - docker build -t jordan/multi-client ./client
-  - docker build -t jordan/multi-nginx ./nginx
-  - docker build -t jordan/multi-server ./server
-  - docker build -t jordan/multi-worker ./worker
-
+  - docker build -t kolloy/multi-client ./client
+  - docker build -t kolloy/multi-nginx ./nginx
+  - docker build -t kolloy/multi-server ./server
+  - docker build -t kolloy/multi-worker ./worker
+#Log into the docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  
-  - docker push jordan/multi-client
-  - docker push jordan/multi-nginx
-  - docker push jordan/multi-server
-  - docker push jordan/multi-worker
+#Push new images up to docker hub 
+  - docker push kolloy/multi-client
+  - docker push kolloy/multi-nginx
+  - docker push kolloy/multi-server
+  - docker push kolloy/multi-worker
